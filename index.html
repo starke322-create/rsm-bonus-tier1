@@ -27,6 +27,13 @@
       display: block;
       margin-top: 12px;
     }
+    .input-row {
+      display: flex;
+      gap: 12px;
+    }
+    .input-col {
+      flex: 1;
+    }
     input, select {
       width: 100%;
       padding: 8px;
@@ -82,20 +89,34 @@
       <label for="gp">Trending Store GP</label>
       <input type="number" id="gp" required min="0" step="1">
 
-      <label for="cpv">CPV % Attained</label>
-      <input type="number" id="cpv" required min="0" max="2" step="0.01" placeholder="e.g. 1 for 100%">
-
-      <label for="bts">BTS % Attained</label>
-      <input type="number" id="bts" required min="0" max="2" step="0.01" placeholder="e.g. 1 for 100%">
-
-      <label for="vaf">VAF % Attained</label>
-      <input type="number" id="vaf" required min="0" max="2" step="0.01" placeholder="e.g. 1 for 100%">
-
-      <label for="netgp">Net Acc GP % Attained</label>
-      <input type="number" id="netgp" required min="0" max="2" step="0.01" placeholder="e.g. 1 for 100%">
-
-      <label for="tfb">TFB % Attained</label>
-      <input type="number" id="tfb" required min="0" max="2" step="0.01" placeholder="e.g. 1 for 100%">
+      <div class="input-row">
+        <div class="input-col">
+          <label for="cpv">CPV % Attained</label>
+          <input type="number" id="cpv" required min="0" max="2" step="0.01" placeholder="e.g. 1 for 100%">
+        </div>
+        <div class="input-col">
+          <label for="bts">BTS % Attained</label>
+          <input type="number" id="bts" required min="0" max="2" step="0.01" placeholder="e.g. 1 for 100%">
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-col">
+          <label for="vaf">VAF % Attained</label>
+          <input type="number" id="vaf" required min="0" max="2" step="0.01" placeholder="e.g. 1 for 100%">
+        </div>
+        <div class="input-col">
+          <label for="accgp">Acc GP % Attained</label>
+          <input type="number" id="accgp" required min="0" max="2" step="0.01" placeholder="e.g. 1 for 100%">
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-col">
+          <label for="tfb">TFB % Attained</label>
+          <input type="number" id="tfb" required min="0" max="2" step="0.01" placeholder="e.g. 1 for 100%">
+        </div>
+        <!-- The second column here is left blank for visual balance -->
+        <div class="input-col"></div>
+      </div>
 
       <div class="section-title">Bonuses</div>
       <label for="storecslb">Store CSLB</label>
@@ -166,7 +187,7 @@
       {min: 61000, max: 80999.99, payout: 500},
       {min: 81000, max: 200000, payout: 650}
     ];
-    const netgpTable = [
+    const accgpTable = [ // renamed from netgpTable
       {min: 0, max: 9999.99, payout: 50},
       {min: 11000, max: 20999.99, payout: 75},
       {min: 21000, max: 30999.99, payout: 150},
@@ -223,7 +244,7 @@
       const cpv = Number(document.getElementById('cpv').value);
       const bts = Number(document.getElementById('bts').value);
       const vaf = Number(document.getElementById('vaf').value);
-      const netgp = Number(document.getElementById('netgp').value);
+      const accgp = Number(document.getElementById('accgp').value);
       const tfb = Number(document.getElementById('tfb').value);
 
       const storecslb = document.getElementById('storecslb').value;
@@ -236,17 +257,17 @@
       const cpvPayout = vlookupPayout(gp, cpvTable);
       const btsPayout = vlookupPayout(gp, btsTable);
       const vafPayout = vlookupPayout(gp, vafTable);
-      const netgpPayout = vlookupPayout(gp, netgpTable);
+      const accgpPayout = vlookupPayout(gp, accgpTable);
       const tfbPayout = vlookupPayout(gp, tfbTable);
 
       // Adjusted payouts
       const cpvAdj = adjustPayout(cpv, cpvPayout);
       const btsAdj = adjustPayout(bts, btsPayout);
       const vafAdj = adjustPayout(vaf, vafPayout);
-      const netgpAdj = adjustPayout(netgp, netgpPayout);
+      const accgpAdj = adjustPayout(accgp, accgpPayout);
       const tfbAdj = adjustPayout(tfb, tfbPayout);
 
-      const totalAdj = cpvAdj + btsAdj + vafAdj + netgpAdj + tfbAdj;
+      const totalAdj = cpvAdj + btsAdj + vafAdj + accgpAdj + tfbAdj;
 
       // Bonus calculations
       // CSLB bonus

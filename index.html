@@ -119,38 +119,58 @@
       </div>
 
       <div class="section-title">Bonuses</div>
-      <label for="storecslb">Store CSLB</label>
-      <select id="storecslb" required>
-        <option value="1st">1st</option>
-        <option value="2nd">2nd</option>
-        <option value="3rd">3rd</option>
-        <option value="4th">4th</option>
-        <option value="5th">5th</option>
-      </select>
-
-      <label for="top15tfb">Top 15 TFB</label>
-      <select id="top15tfb" required>
-        <option value="no">No</option>
-        <option value="yes">Yes</option>
-      </select>
-
-      <label for="top15hsi">Top 15 HSI</label>
-      <select id="top15hsi" required>
-        <option value="no">No</option>
-        <option value="yes">Yes</option>
-      </select>
-
-      <label for="worldclass">World Class</label>
-      <select id="worldclass" required>
-        <option value="no">No</option>
-        <option value="yes">Yes</option>
-      </select>
-
-      <label for="achieveall">Achieve All</label>
-      <select id="achieveall" required>
-        <option value="no">No</option>
-        <option value="yes">Yes</option>
-      </select>
+      
+      <div class="input-row">
+        <div class="input-col">
+          <label for="storecslb">Store CSLB</label>
+          <select id="storecslb" required>
+            <option value="1st">1st</option>
+            <option value="2nd">2nd</option>
+            <option value="3rd">3rd</option>
+            <option value="4th">4th</option>
+            <option value="5th">5th</option>
+          </select>
+        </div>
+          <div class="input-col">
+          <label for="top15tfb">Top 15 TFB</label>
+          <select id="top15tfb" required>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-col">
+          <label for="top15hsi">Top 15 HSI</label>
+          <select id="top15hsi" required>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+          <div class="input-col">
+          <label for="worldclass">World Class</label>
+          <select id="worldclass" required>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-col">
+          <label for="achieveall">Achieve All</label>
+          <select id="achieveall" required>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+          <div class="input-col">
+          <label for="socialmedia">Social Media</label>
+          <select id="socialmedia" required>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+      </div>
 
       <button type="button" onclick="calculateBonus()">Calculate Bonus</button>
     </form>

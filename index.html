@@ -255,6 +255,15 @@
       "5th": -0.20
     };
 
+    // MVP award bonus lookup
+    const mvpBonus = {
+      "No": 0,
+      "1st": 600,
+      "2nd-5th": 400,
+      "6th-10th": 300,
+      "11th-15th": 200
+    };
+    
     // Fixed amounts for World Class and Achieve All
     const worldClassBonus = 500;
     const achieveAllBonus = 300;
@@ -290,6 +299,7 @@
       const tfb = Number(document.getElementById('tfb').value);
 
       const storecslb = document.getElementById('storecslb').value;
+      const mvpaward = document.getElementById('mvpaward').value;
       const top15tfb = document.getElementById('top15tfb').value;
       const top15hsi = document.getElementById('top15hsi').value;
       const worldclass = document.getElementById('worldclass').value;
@@ -316,6 +326,9 @@
       const cslbPerc = cslbBonus[storecslb] || 0;
       const cslbPayout = totalAdj * cslbPerc;
 
+      // MVP award
+      const mvpPayout = mvpBonus[mvpaward] || 0;
+
       // Top 15 TFB
       const tfbPerc = (top15tfb === "yes") ? 0.05 : 0;
       const tfbBonus = totalAdj * tfbPerc;
@@ -330,7 +343,7 @@
       // Achieve All
       const aaBonus = (achieveall === "yes") ? achieveAllBonus : 0;
 
-      const totalBonus = cslbPayout + tfbBonus + hsiBonus + wcBonus + aaBonus;
+      const totalBonus = cslbPayout + tfbBonus + hsiBonus + wcBonus + aaBonus + mvpPayout;
 
       // Final total
       const totalPayout = totalAdj + totalBonus;

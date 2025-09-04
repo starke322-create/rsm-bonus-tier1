@@ -94,27 +94,27 @@
         </div>
         <div class="input-col">
           <label for="cpv">CPV % Attained</label>
-          <input type="percentage" id="cpv" required min="0" max="999" step="0.01" placeholder="e.g. 1 for 100%">
+          <input type="number" id="cpv" required min="0" max="200" step="0.01" placeholder="e.g. 100 for 100%">
         </div>
       </div>
       <div class="input-row">
         <div class="input-col">
           <label for="vaf">VAF % Attained</label>
-          <input type="number" id="vaf" required min="0" max="2" step="0.01" placeholder="e.g. 1 for 100%">
+          <input type="number" id="vaf" required min="0" max="200" step="0.01" placeholder="e.g. 100 for 100%">
         </div>
         <div class="input-col">
           <label for="bts">BTS % Attained</label>
-          <input type="number" id="bts" required min="0" max="2" step="0.01" placeholder="e.g. 1 for 100%">
+          <input type="number" id="bts" required min="0" max="200" step="0.01" placeholder="e.g. 100 for 100%">
         </div>
       </div>
       <div class="input-row">
         <div class="input-col">
           <label for="accgp">Acc GP % Attained</label>
-          <input type="number" id="accgp" required min="0" max="2" step="0.01" placeholder="e.g. 1 for 100%">
+          <input type="number" id="accgp" required min="0" max="200" step="0.01" placeholder="e.g. 100 for 100%">
         </div>
         <div class="input-col">
           <label for="tfb">TFB % Attained</label>
-          <input type="number" id="tfb" required min="0" max="2" step="0.01" placeholder="e.g. 1 for 100%">
+          <input type="number" id="tfb" required min="0" max="200" step="0.01" placeholder="e.g. 100 for 100%">
         </div>
       </div>
 
@@ -228,10 +228,12 @@
       return 0;
     }
 
+    // Adjust payout based on percent entered as 0-200, so convert to decimal
     function adjustPayout(percent, base) {
-      if (percent > 0.7999 && percent < 1.25) {
-        return base * percent;
-      } else if (percent > 1.2499) {
+      const pct = percent / 100;
+      if (pct > 0.7999 && pct < 1.25) {
+        return base * pct;
+      } else if (pct > 1.2499) {
         return base * 1.25;
       } else {
         return 0;
@@ -241,7 +243,7 @@
     function calculateBonus() {
       // Inputs
       const gp = Number(document.getElementById('gp').value);
-      const cpv = Percentage(document.getElementById('cpv').value);
+      const cpv = Number(document.getElementById('cpv').value);
       const bts = Number(document.getElementById('bts').value);
       const vaf = Number(document.getElementById('vaf').value);
       const accgp = Number(document.getElementById('accgp').value);

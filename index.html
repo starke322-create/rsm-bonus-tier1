@@ -133,10 +133,11 @@ Comp adjust
           </select>
         </div>
           <div class="input-col">
-          <label for="tfb125">TFB +125%</label>
-          <select id="tfb125" required>
-            <option value="no">No</option>
-            <option value="yes">Yes</option>
+          <label for="tfbattainment">TFB Attainment</label>
+          <select id="tfbattainment" required>
+            <option value="125%+">125%+</option>
+            <option value="90-124.99">90-124.99</option>
+            <option value="0-89.99">0-89.99</option>
           </select>
         </div>
       </div>
@@ -289,10 +290,11 @@ Comp adjust
       "1post/100doorswings": 0.10,
       "<0.5post/100doorswings": -0.10
     };
-
-    const tfb125BonusPerc = {
-      "no": 0.10,   // +10%
-      "yes": -0.10  // -10%
+    
+    const tfbAttainmentBonusPerc = {
+      "90-124.99": 0.00,
+      "125%+": 0.10,
+      "0-89.99": -0.10
     };
     
     // Fixed amounts for World Class and Achieve All
@@ -337,7 +339,7 @@ Comp adjust
       const worldclass = document.getElementById('worldclass').value;
       const achieveall = document.getElementById('achieveall').value;
       const socialmedia = document.getElementById('socialmedia').value;
-      const tfb125 = document.getElementById('tfb125').value;
+      const tfb125attainment = document.getElementById('tfbattainment').value;
 
       // Lookups for base payout
       const cpvPayout = vlookupPayout(gp, cpvTable);
@@ -375,9 +377,9 @@ Comp adjust
       const tlifePerc = (tlife === "yes") ? 0.05 : 0;
       const tlifeBonus = totalAdj * tlifePerc;
 
-      // Tfb 125
-      const tfb125Perc = tfb125BonusPerc[tfb125] || 0;
-      const tfb125Bonus = totalAdj * tfb125Perc;
+      // Tfb Attainment
+      const tfbAttainmentPerc = tfbAttainmentBonusPerc[tfb125] || 0;
+      const tfbAttainmentBonus = totalAdj * tfbAttainmentPerc;
      
       // Social Media
       const socialPerc = socialMediaBonusPerc[socialmedia] || 0;

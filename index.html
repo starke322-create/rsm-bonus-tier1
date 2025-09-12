@@ -274,6 +274,13 @@
       "5th": -0.20
     };
 
+    // Social Adjustment lookup
+   const socialMediaAdj = {
+     "0.5-1post/100doorswings": 0,
+     "1post/100doorswings": 0.10,
+     "<0.5post/100doorswings": -0.10
+    };
+    
     // MVP award bonus lookup
     const mvpBonus = {
       "No": 0,
@@ -324,6 +331,7 @@
       const tlife = document.getElementById('tlife').value;
       const worldclass = document.getElementById('worldclass').value;
       const achieveall = document.getElementById('achieveall').value;
+      const socialmedia = document.getElementById('socialmedia').value;
 
       // Lookups for base payout
       const cpvPayout = vlookupPayout(gp, cpvTable);
@@ -345,6 +353,9 @@
       // CSLB bonus
       const cslbPerc = cslbAdj[storecslb] || 0;
       const cslbPayout = totalAdj * cslbPerc;
+
+      const socialPerc = socialMediaAdj[socialmedia] || 0;
+      const socialBonus = totalAdj * socialPerc;
 
       // MVP award
       const mvpPayout = mvpBonus[mvpaward] || 0;

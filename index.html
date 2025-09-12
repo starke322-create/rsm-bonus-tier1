@@ -176,8 +176,8 @@
       </div>
       <div class="input-row">
         <div class="input-col">
-          <label for="t-lifebelow65%">T-Life Below 65%</label>
-          <select id="t-lifebelow65%" required>
+          <label for="tlife">T-Life Below 65%</label>
+          <select id="tlife" required>
             <option value="no">No</option>
             <option value="yes">Yes</option>
           </select>
@@ -277,7 +277,7 @@
       return 0;
     }
 
-    // Adjust payout based on percent entered as 0-200, so convert to decimal
+    // Adjust payout based on percent entered as 0-999, so convert to decimal
     function adjustPayout(percent, base) {
       const pct = percent / 100;
       if (pct > 0.7999 && pct < 1.25) {
@@ -302,6 +302,7 @@
       const mvpaward = document.getElementById('mvpaward').value;
       const top15tfb = document.getElementById('top15tfb').value;
       const top15hsi = document.getElementById('top15hsi').value;
+      const tlife = document.getElementById('tlife').value;
       const worldclass = document.getElementById('worldclass').value;
       const achieveall = document.getElementById('achieveall').value;
 
@@ -337,13 +338,17 @@
       const hsiPerc = (top15hsi === "yes") ? 0.05 : 0;
       const hsiBonus = totalAdj * hsiPerc;
 
+      // Tlife
+      const tlifePerc = (tlife === "yes") ? 0.05 : 0;
+      const tlifeBonus = totalAdj * tfbPerc;
+      
       // World Class
       const wcBonus = (worldclass === "yes") ? worldClassBonus : 0;
 
       // Achieve All
       const aaBonus = (achieveall === "yes") ? achieveAllBonus : 0;
 
-      const totalBonus = cslbPayout + tfbBonus + hsiBonus + wcBonus + aaBonus + mvpPayout;
+      const totalBonus = cslbPayout + tfbBonus + hsiBonus + wcBonus + aaBonus + mvpPayout + tlifeBonus;
 
       // Final total
       const totalPayout = totalAdj + totalBonus;

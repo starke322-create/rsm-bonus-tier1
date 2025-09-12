@@ -340,6 +340,16 @@
       const socialmedia = document.getElementById('socialmedia').value;
       const tfbPercent = document.getElementById('tfb%').value;
 
+      // If Perfect Punch is "no", show $0 and exit.
+      if (perfectpunch === "no") {
+        document.getElementById('result').style.display = "block";
+        document.getElementById('result').innerHTML = `
+          <div>Estimated Bonus Payout:</div>
+          <div style="font-size:2em;">$0.00</div>
+    `      ;
+          return;
+      }
+      
       // Lookups for base payout
       const cpvPayout = vlookupPayout(gp, cpvTable);
       const btsPayout = vlookupPayout(gp, btsTable);

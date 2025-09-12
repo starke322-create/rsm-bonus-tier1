@@ -355,30 +355,30 @@
       const cslbPayout = totalAdj * cslbPerc;
 
       const socialPerc = socialMediaAdj[socialmedia] || 0;
-      const socialBonus = totalAdj * socialPerc;
+      const socialPayout = totalAdj * socialPerc;
 
       // MVP award
       const mvpPayout = mvpBonus[mvpaward] || 0;
 
       // Top 15 TFB
       const tfbPerc = (top15tfb === "yes") ? 0.05 : 0;
-      const tfbBonus = totalAdj * tfbPerc;
+      const tfbPayout = totalAdj * tfbPerc;
 
       // Top 15 HSI
       const hsiPerc = (top15hsi === "yes") ? 0.05 : 0;
-      const hsiBonus = totalAdj * hsiPerc;
+      const hsiPayout = totalAdj * hsiPerc;
 
       // Tlife
       const tlifePerc = (tlife === "yes") ? -0.10 : 0;
-      const tlifeBonus = totalAdj * tlifePerc;
+      const tlifePayout = totalAdj * tlifePerc;
       
       // World Class
-      const wcBonus = (worldclass === "yes") ? worldClassBonus : 0;
+      const wcPayout = (worldclass === "yes") ? worldClassBonus : 0;
 
       // Achieve All
-      const aaBonus = (achieveall === "yes") ? achieveAllBonus : 0;
+      const aaPayout = (achieveall === "yes") ? achieveAllBonus : 0;
 
-      const totalBonus = cslbPayout + tfbBonus + hsiBonus + wcBonus + aaBonus + mvpPayout + tlifeBonus + socialBonus;
+      const totalBonus = cslbPayout + tfbPayout + hsiPayout + wcPayout + aaPayout + mvpPayout + tlifePayout + socialPayout;
 
       // Final total
       const totalPayout = totalAdj + totalBonus;

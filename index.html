@@ -283,6 +283,12 @@ Comp adjust
       "6th-10th": 300,
       "11th-15th": 200
     };
+
+    const socialMediaBonusPerc = {
+      "0.5-1post/100doorswings": 0,
+      "1post/100doorswings": 0.10,
+      "<0.5post/100doorswings": -0.10
+    };
     
     // Fixed amounts for World Class and Achieve All
     const worldClassBonus = 500;
@@ -325,6 +331,7 @@ Comp adjust
       const tlife = document.getElementById('tlife').value;
       const worldclass = document.getElementById('worldclass').value;
       const achieveall = document.getElementById('achieveall').value;
+      const socialmedia = document.getElementById('socialmedia').value;
 
       // Lookups for base payout
       const cpvPayout = vlookupPayout(gp, cpvTable);
@@ -368,7 +375,10 @@ Comp adjust
       // Achieve All
       const aaBonus = (achieveall === "yes") ? achieveAllBonus : 0;
 
-      const totalBonus = cslbPayout + tfbBonus + hsiBonus + wcBonus + aaBonus + mvpPayout + tlifeBonus;
+      const socialPerc = socialMediaBonusPerc[socialmedia] || 0;
+      const socialBonus = totalAdj * socialPerc;
+      
+      const totalBonus = cslbPayout + tfbBonus + hsiBonus + wcBonus + aaBonus + mvpPayout + tlifeBonus + socialBonus;
 
       // Final total
       const totalPayout = totalAdj + totalBonus;

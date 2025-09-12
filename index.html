@@ -289,6 +289,12 @@
       "1post/100doorswings": 0.10,
       "<0.5post/100doorswings": -0.10
     };
+
+    const tfbPercentBonusPerc = {
+      "90-124.99": 0,    // 0%
+      "125+": 0.10,      // +10%
+      "0-89.99": -0.10   // -10%
+    };
     
     // Fixed amounts for World Class and Achieve All
     const worldClassBonus = 500;
@@ -332,6 +338,7 @@
       const worldclass = document.getElementById('worldclass').value;
       const achieveall = document.getElementById('achieveall').value;
       const socialmedia = document.getElementById('socialmedia').value;
+      const tfbPercent = document.getElementById('tfb%').value;
 
       // Lookups for base payout
       const cpvPayout = vlookupPayout(gp, cpvTable);
@@ -368,6 +375,10 @@
       // Tlife
       const tlifePerc = (tlife === "yes") ? 0.05 : 0;
       const tlifeBonus = totalAdj * tlifePerc;
+
+      // TFB Percent
+      const tfbPercentPerc = tfbPercentBonusPerc[tfbPercent] || 0;
+      const tfbPercentBonus = totalAdj * tfbPercentPerc;
       
       // World Class
       const wcBonus = (worldclass === "yes") ? worldClassBonus : 0;
@@ -378,7 +389,7 @@
       const socialPerc = socialMediaBonusPerc[socialmedia] || 0;
       const socialBonus = totalAdj * socialPerc;
       
-      const totalBonus = cslbPayout + tfbBonus + hsiBonus + wcBonus + aaBonus + mvpPayout + tlifeBonus + socialBonus;
+      const totalBonus = cslbPayout + tfbBonus + hsiBonus + wcBonus + aaBonus + mvpPayout + tlifeBonus + socialBonus + tfbPercentBonus;
 
       // Final total
       const totalPayout = totalAdj + totalBonus;

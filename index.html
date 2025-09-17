@@ -540,14 +540,14 @@
       const totalBonus = cslbPayout + tfbBonus + hsiBonus + wcBonus + aaBonus + mvpPayout + tlifeBonus + socialBonus + tfbPercentBonus;
       const totalPayout = totalAdj + totalBonus;
 
-      breakdownRows.push(["Total Bonus", "", "", `$${totalPayout.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}`]);
+      breakdownRows.push(["TOTAL", "", "", `$${totalPayout.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}`]);
 
       document.getElementById('result').style.display = "block";
       document.getElementById('result').innerHTML = `
         <div>Estimated Bonus Payout:</div>
         <div style="font-size:2em;">$${totalPayout.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
         <div style="font-size:0.93em; color: #555; margin-top:6px;">
-          <em>*Note - Does not include any operational losses</em>
+          <em>Does not include operational losses</em>
       `;
 
       // Breakdown table
